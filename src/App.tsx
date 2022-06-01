@@ -14,9 +14,24 @@ export const App = () => {
     setTaskData(getFilterTodoData);
   };
 
+  // mark the task as done
+  const markTaskAsDoneToggle = (ID: number): void => {
+    const toggleJsonDataByID = taskData.map((singularTaskData) =>
+      singularTaskData.ID === ID
+        ? { ...singularTaskData, IsDone: !singularTaskData.IsDone }
+        : singularTaskData
+    );
+    // update the state
+    setTaskData(toggleJsonDataByID);
+  };
+
   return (
     <div className="App">
-      <Tasks taskData={taskData} removeTaskByID={removeTaskByID} />
+      <Tasks
+        taskData={taskData}
+        removeTaskByID={removeTaskByID}
+        markTaskAsDoneToggle={markTaskAsDoneToggle}
+      />
     </div>
   );
 };

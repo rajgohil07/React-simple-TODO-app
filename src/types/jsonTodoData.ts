@@ -4,4 +4,5 @@ export interface IJsonTodoData {
   IsDone: boolean;
   Date: string;
   removeTaskByID?: Function;
+  markTaskAsDoneToggle?: Function;
 }

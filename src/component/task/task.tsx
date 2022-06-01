@@ -7,9 +7,11 @@ export const Task = ({
   IsDone,
   Date,
   removeTaskByID,
+  markTaskAsDoneToggle,
 }: IJsonTodoData) => {
+  console.log("IsDone :>> ", IsDone);
   return (
-    <>
+    <div onDoubleClick={() => markTaskAsDoneToggle!(ID)}>
       <h1>{TaskName}</h1>
       <h1>{Date}</h1>
       <h1>{ID}</h1>
@@ -18,6 +20,6 @@ export const Task = ({
         className="redCrossMark"
         onClick={() => removeTaskByID!(ID)}
       />
-    </>
+    </div>
   );
 };
