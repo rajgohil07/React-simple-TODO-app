@@ -110,3 +110,14 @@ footer {
   margin-top: 30px;
   text-align: center;
 }
+
+.redCrossMark:hover {
+  color: red;
+  font-size: 32px;
+  transition: all 150ms linear;
+}
+
+.redCrossMark {
+  color: blue;
+  transition: all 150ms linear;
+}

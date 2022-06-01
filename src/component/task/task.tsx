@@ -1,4 +1,5 @@
 import { IJsonTodoData } from "../../types/jsonTodoData";
+import { GiCrossMark } from "react-icons/gi";
 
 export const Task = ({ TaskName, ID, IsDone, Date }: IJsonTodoData) => {
   return (
@@ -7,6 +8,7 @@ export const Task = ({ TaskName, ID, IsDone, Date }: IJsonTodoData) => {
       <h1>{Date}</h1>
       <h1>{ID}</h1>
       <h1>{IsDone}</h1>
+      <GiCrossMark className="redCrossMark" />
     </>
   );
 };
