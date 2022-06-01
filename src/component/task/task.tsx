@@ -9,16 +9,26 @@ export const Task = ({
   removeTaskByID,
   markTaskAsDoneToggle,
 }: IJsonTodoData) => {
+  let classNameList = "task";
+  if (IsDone) {
+    classNameList += " reminder";
+  }
   return (
-    <div onDoubleClick={() => markTaskAsDoneToggle!(ID)}>
-      <h1>{TaskName}</h1>
-      <h1>{Date}</h1>
-      <h1>{ID}</h1>
-      <h1>{IsDone}</h1>
-      <GiCrossMark
-        className="redCrossMark"
-        onClick={() => removeTaskByID!(TaskName, ID)}
-      />
+    <div
+      className={classNameList}
+      onDoubleClick={() => markTaskAsDoneToggle!(ID)}
+    >
+      <div className="innerClassDiv">
+        <h3>
+          {TaskName}
+          <GiCrossMark
+            className="redCrossMark"
+            onClick={() => removeTaskByID!(TaskName, ID)}
+          />
+        </h3>
+        <p>{Date}</p>
+        <h1>{IsDone}</h1>
+      </div>
     </div>
   );
 };

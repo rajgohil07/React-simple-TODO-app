@@ -63,8 +63,9 @@ export const App = () => {
   const toggleTheButton = () => setExpandButton(!expandButton);
 
   return (
-    <div className="App">
-      <button onClick={toggleTheButton}>
+    <div className="App container">
+      <h1>Task Tracker</h1>
+      <button className="btn" onClick={toggleTheButton}>
         {expandButton ? "Close task" : "Add task"}
       </button>
       {expandButton ? <AddTask /> : null}

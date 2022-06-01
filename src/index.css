@@ -55,10 +55,20 @@ body {
 }
 
 .task {
-  background: #f4f4f4;
+  background: #ceb9f0;
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  transition: all 150ms linear;
+}
+
+.innerClassDiv h3 {
+  transition: all 150ms linear;
+}
+
+.innerClassDiv h3:hover {
+  font-size: 32px;
+  transition: all 150ms linear;
 }
 
 .task.reminder {
@@ -113,7 +123,8 @@ footer {
 
 .redCrossMark:hover {
   color: red;
-  font-size: 32px;
+  font-size: 64px;
+  padding-top: 10px;
   transition: all 150ms linear;
 }
 
@@ -125,7 +136,8 @@ footer {
 .custom-ui {
   background: lightgoldenrodyellow;
   width: 400px;
-  text-align: center;padding: 1rem;
+  text-align: center;
+  padding: 1rem;
   color: black;
 }
 
