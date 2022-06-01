@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dataJSON from "./fake-backend-data-stub/todo-data-stub.json";
 import { Tasks } from "./component/tasks/tasks";
+import { AddTask } from "./component/addTask/addTask";
 
 export const App = () => {
   // set the state by storing the json
@@ -11,6 +12,12 @@ export const App = () => {
 
   // to check weather the task exist or not
   const IsTaskExist: boolean = taskData.length > 0 ? true : false;
+
+  // example of component did mount
+  useEffect(() => {
+    taskData.length > 0 ? setExpandButton(expandButton) : setExpandButton(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskData]);
 
   // to remove the task by id
   const removeTaskByID = (ID: number): void => {
@@ -40,6 +47,7 @@ export const App = () => {
       <button onClick={toggleTheButton}>
         {expandButton ? "Close task" : "Add task"}
       </button>
+      {expandButton ? <AddTask /> : null}
       {IsTaskExist ? (
         <Tasks
           taskData={taskData}
