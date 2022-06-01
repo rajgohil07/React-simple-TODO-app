@@ -1,0 +1,32 @@
+[
+  {
+    "ID": 1,
+    "Task": "Wake up!",
+    "IsDone": true,
+    "Date": "June 1st at 7:00 AM"
+  },
+  {
+    "ID": 2,
+    "Task": "GO exercise",
+    "IsDone": true,
+    "Date": "June 1st at 7:30 AM"
+  },
+  {
+    "ID": 3,
+    "Task": "Take a bath",
+    "IsDone": false,
+    "Date": "June 1st at 8:30 AM"
+  },
+  {
+    "ID": 4,
+    "Task": "Ready for your work",
+    "IsDone": false,
+    "Date": "June 1st at 10:00 AM"
+  },
+  {
+    "ID": 5,
+    "Task": "Back to home",
+    "IsDone": false,
+    "Date": "June 1st at 6:30pm"
+  }
+]
