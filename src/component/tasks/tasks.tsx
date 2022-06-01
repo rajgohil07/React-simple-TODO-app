@@ -2,7 +2,13 @@ import { IJsonTodoData } from "../../types/jsonTodoData";
 import { Task } from "../task/task";
 
 // reference https://stackoverflow.com/questions/39672807/types-in-object-destructuring
-export const Tasks = ({ taskData }: { taskData: IJsonTodoData[] }) => {
+export const Tasks = ({
+  taskData,
+  removeTaskByID,
+}: {
+  taskData: IJsonTodoData[];
+  removeTaskByID: Function;
+}) => {
   return (
     <>
       {taskData.map((singularTaskData) => {
@@ -14,6 +20,7 @@ export const Tasks = ({ taskData }: { taskData: IJsonTodoData[] }) => {
             ID={ID}
             IsDone={IsDone}
             Date={Date}
+            removeTaskByID={removeTaskByID}
           />
         );
       })}
