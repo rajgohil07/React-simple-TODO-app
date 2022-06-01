@@ -5,6 +5,9 @@ import { Tasks } from "./component/tasks/tasks";
 export const App = () => {
   const [taskData, setTaskData] = useState(dataJSON);
 
+  // to check weather the task exist or not
+  const IsTaskExist: boolean = taskData.length > 0 ? true : false;
+
   // to remove the task by id
   const removeTaskByID = (ID: number): void => {
     const getFilterTodoData = taskData.filter(
@@ -27,11 +30,15 @@ export const App = () => {
 
   return (
     <div className="App">
-      <Tasks
-        taskData={taskData}
-        removeTaskByID={removeTaskByID}
-        markTaskAsDoneToggle={markTaskAsDoneToggle}
-      />
+      {IsTaskExist ? (
+        <Tasks
+          taskData={taskData}
+          removeTaskByID={removeTaskByID}
+          markTaskAsDoneToggle={markTaskAsDoneToggle}
+        />
+      ) : (
+        <h1>Task does not exist</h1>
+      )}
     </div>
   );
 };
