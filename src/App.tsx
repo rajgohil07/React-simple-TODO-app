@@ -3,7 +3,11 @@ import dataJSON from "./fake-backend-data-stub/todo-data-stub.json";
 import { Tasks } from "./component/tasks/tasks";
 
 export const App = () => {
+  // set the state by storing the json
   const [taskData, setTaskData] = useState(dataJSON);
+
+  // set to display add task
+  const [expandButton, setExpandButton] = useState(false);
 
   // to check weather the task exist or not
   const IsTaskExist: boolean = taskData.length > 0 ? true : false;
@@ -28,8 +32,14 @@ export const App = () => {
     setTaskData(toggleJsonDataByID);
   };
 
+  // toggle the close task/add task button
+  const toggleTheButton = () => setExpandButton(!expandButton);
+
   return (
     <div className="App">
+      <button onClick={toggleTheButton}>
+        {expandButton ? "Close task" : "Add task"}
+      </button>
       {IsTaskExist ? (
         <Tasks
           taskData={taskData}
