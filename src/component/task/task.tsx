@@ -9,7 +9,6 @@ export const Task = ({
   removeTaskByID,
   markTaskAsDoneToggle,
 }: IJsonTodoData) => {
-  console.log("IsDone :>> ", IsDone);
   return (
     <div onDoubleClick={() => markTaskAsDoneToggle!(ID)}>
       <h1>{TaskName}</h1>
