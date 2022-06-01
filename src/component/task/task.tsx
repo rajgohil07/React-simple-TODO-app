@@ -17,7 +17,7 @@ export const Task = ({
       <h1>{IsDone}</h1>
       <GiCrossMark
         className="redCrossMark"
-        onClick={() => removeTaskByID!(ID)}
+        onClick={() => removeTaskByID!(TaskName, ID)}
       />
     </div>
   );

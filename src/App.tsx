@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import dataJSON from "./fake-backend-data-stub/todo-data-stub.json";
 import { Tasks } from "./component/tasks/tasks";
 import { AddTask } from "./component/addTask/addTask";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export const App = () => {
   // set the state by storing the json
@@ -20,12 +22,30 @@ export const App = () => {
   }, [taskData]);
 
   // to remove the task by id
-  const removeTaskByID = (ID: number): void => {
-    const getFilterTodoData = taskData.filter(
-      (singularTaskData) => singularTaskData.ID !== ID
-    );
-    // update the state
-    setTaskData(getFilterTodoData);
+  const removeTaskByID = (TaskName: string, ID: number): void => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <h1>Are you sure?</h1>
+            <p>{`Are you sure to do delete '${TaskName}' task?`}</p>
+            <button onClick={onClose}>No</button>
+            <button
+              onClick={() => {
+                const getFilterTodoData = taskData.filter(
+                  (singularTaskData) => singularTaskData.ID !== ID
+                );
+                // update the state
+                setTaskData(getFilterTodoData);
+                onClose();
+              }}
+            >
+              Yes, Delete it!
+            </button>
+          </div>
+        );
+      },
+    });
   };
 
   // mark the task as done

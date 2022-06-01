@@ -121,3 +121,19 @@ footer {
   color: blue;
   transition: all 150ms linear;
 }
+
+.custom-ui {
+  background: lightgoldenrodyellow;
+  width: 400px;
+  text-align: center;padding: 1rem;
+  color: black;
+}
+
+.custom-ui button {
+  background-color: transparent;
+  border: 1px solid black;
+  width: 150px;
+  height: 2rem;
+  margin: 1rem;
+  color: black;
+}
