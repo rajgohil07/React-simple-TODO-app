@@ -7,7 +7,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      <Tasks />
+      <Tasks taskData={taskData} />
     </div>
   );
 };
