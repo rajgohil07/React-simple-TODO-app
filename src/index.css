@@ -112,6 +112,7 @@ body {
 }
 
 .form-control-check input {
+  max-width: 30px !important;
   flex: 2;
   height: 20px;
 }
