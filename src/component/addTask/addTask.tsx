@@ -23,7 +23,7 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
     addTaskToJson(
       taskName,
       IsTaskCompleted,
-      moment(taskDate).format("MMMM Do YYYY, h:mm:ss a").toString()
+      moment(taskDate).format("MMMM Do YY, h:mm: A").toString()
     );
   };
 
