@@ -82,10 +82,12 @@ export const App = () => {
 
   return (
     <div className="App container">
-      <h1>Task Tracker</h1>
-      <button className="btn" onClick={toggleTheButton}>
-        {expandButton ? "Close task" : "Add task"}
-      </button>
+      <div className="frontButton">
+        <h1>Task Tracker</h1>
+        <button className="btn" onClick={toggleTheButton}>
+          {expandButton ? "Close task" : "Add task"}
+        </button>
+      </div>
       {expandButton ? <AddTask addTaskToJson={addTask} /> : null}
       {IsTaskExist ? (
         <Tasks

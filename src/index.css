@@ -154,3 +154,15 @@ footer {
   background-color: gray;
   cursor: not-allowed;
 }
+
+.ErrorRed {
+  color: red;
+  font-weight: 500px;
+  padding-left: 0.5rem;
+  margin-top: -05px;
+}
+
+.frontButton {
+  display: flex;
+  justify-content: space-between;
+}

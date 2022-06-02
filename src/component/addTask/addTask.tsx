@@ -12,6 +12,9 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
   // task date state
   const [getDateAndTime, setDateAndTime] = useState(new Date());
 
+  // store error state
+  const [IsError, changesError] = useState(false);
+
   // handle submit task form
   const submitTask = (
     e: any,
@@ -33,6 +36,10 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   !getTask ? buttonClassNameList.push("btn-disabled") : null;
 
+  const validateTaskName = () => {
+    !getTask ? changesError(true) : changesError(false);
+  };
+
   return (
     <form
       className="add-form"
@@ -42,10 +49,15 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
         <label>Task name:</label>
         <input
           onChange={(e) => SetTask(e.target.value)}
+          onBlur={validateTaskName}
+          onKeyUp={validateTaskName}
           placeholder="Please your task name"
           type="text"
           value={getTask}
         />
+        {IsError ? (
+          <h5 className="ErrorRed">Please enter the task name</h5>
+        ) : null}
       </div>
       <div className="form-control">
         <label>Select date and time:</label>
