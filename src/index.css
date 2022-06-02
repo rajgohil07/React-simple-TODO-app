@@ -150,3 +150,8 @@ footer {
   margin: 1rem;
   color: black;
 }
+
+.btn-disabled {
+  background-color: #303030;
+  cursor: not-allowed;
+}

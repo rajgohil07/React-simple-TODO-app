@@ -27,6 +27,12 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
     );
   };
 
+  // button class name list
+  const buttonClassNameList: string[] = ["btn", " btn-block"];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  !getTask ? buttonClassNameList.push("btn-disabled") : null;
+
   return (
     <form
       className="add-form"
@@ -53,7 +59,12 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
         />
         <label>is task completed?</label>
       </div>
-      <input type="submit" className="btn btn-block" value="Add task" />
+      <input
+        type="submit"
+        disabled={getTask ? false : true}
+        className={buttonClassNameList.join(" ")}
+        value="Add task"
+      />
     </form>
   );
 };
