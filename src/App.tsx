@@ -94,7 +94,7 @@ export const App = () => {
           markTaskAsDoneToggle={markTaskAsDoneToggle}
         />
       ) : (
-        <h1>Task does not exist</h1>
+        <h3>Task does not exist! Please add tasks</h3>
       )}
     </div>
   );

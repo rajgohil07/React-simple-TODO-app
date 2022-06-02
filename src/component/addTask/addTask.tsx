@@ -48,7 +48,7 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
         />
       </div>
       <div className="form-control">
-        <label>Select date and time</label>
+        <label>Select date and time:</label>
         <DateTimePicker onChange={setDateAndTime} value={getDateAndTime} />
       </div>
       <div className="form-control form-control-check">
