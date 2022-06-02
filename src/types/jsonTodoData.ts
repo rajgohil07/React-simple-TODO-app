@@ -1,5 +1,5 @@
 export interface IJsonTodoData {
-  ID: number;
+  ID: string;
   TaskName: string;
   IsDone: boolean;
   Date: string;

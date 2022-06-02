@@ -12,8 +12,10 @@
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
     "moment": "^2.29.3",
+    "randombytes": "^2.1.0",
     "react": "^18.1.0",
     "react-confirm-alert": "^3.0.2",
+    "react-datetime-picker": "^3.5.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
     "react-scripts": "5.0.1",
@@ -47,6 +49,10 @@
     ]
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "@types/randombytes": "^2.0.0",
+    "@types/react-datetime-picker": "^3.4.1",
+    "buffer": "^6.0.3",
     "gh-pages": "^4.0.0"
   }
 }

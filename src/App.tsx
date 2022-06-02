@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import dataJSON from "./fake-backend-data-stub/todo-data-stub.json";
+import { dataJSON } from "./fake-backend-data-stub/todo-data-stub";
 import { Tasks } from "./component/tasks/tasks";
 import { AddTask } from "./component/addTask/addTask";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { getRandomID } from "./helper/herlperFunction";
+import { IJsonTodoData } from "./types/jsonTodoData";
 
 export const App = () => {
   // set the state by storing the json
@@ -22,7 +24,7 @@ export const App = () => {
   }, [taskData]);
 
   // to remove the task by id
-  const removeTaskByID = (TaskName: string, ID: number): void => {
+  const removeTaskByID = (TaskName: string, ID: string): void => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -49,7 +51,7 @@ export const App = () => {
   };
 
   // mark the task as done
-  const markTaskAsDoneToggle = (ID: number): void => {
+  const markTaskAsDoneToggle = (ID: string): void => {
     const toggleJsonDataByID = taskData.map((singularTaskData) =>
       singularTaskData.ID === ID
         ? { ...singularTaskData, IsDone: !singularTaskData.IsDone }
@@ -62,13 +64,29 @@ export const App = () => {
   // toggle the close task/add task button
   const toggleTheButton = () => setExpandButton(!expandButton);
 
+  // add task to the json data
+  const addTask = (
+    taskName: string,
+    IsTaskCompleted: boolean,
+    taskDate: string
+  ) => {
+    const dataObject: IJsonTodoData = {
+      ID: getRandomID(),
+      TaskName: taskName,
+      IsDone: IsTaskCompleted,
+      Date: taskDate,
+    };
+    setTaskData([...taskData, dataObject]);
+    setExpandButton(false);
+  };
+
   return (
     <div className="App container">
       <h1>Task Tracker</h1>
       <button className="btn" onClick={toggleTheButton}>
         {expandButton ? "Close task" : "Add task"}
       </button>
-      {expandButton ? <AddTask /> : null}
+      {expandButton ? <AddTask addTaskToJson={addTask} /> : null}
       {IsTaskExist ? (
         <Tasks
           taskData={taskData}
