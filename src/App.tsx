@@ -82,6 +82,8 @@ export const App = () => {
         );
       },
     });
+    setExpandButton(false);
+    setUpdateTaskData(null);
   };
 
   // mark the task as done
