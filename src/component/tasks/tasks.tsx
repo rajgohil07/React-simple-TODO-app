@@ -1,4 +1,5 @@
 import { IJsonTodoData } from "../../types/jsonTodoData";
+import { ITaskOption } from "../../types/TaskOptions";
 import { Task } from "../task/task";
 
 // reference https://stackoverflow.com/questions/39672807/types-in-object-destructuring
@@ -15,7 +16,7 @@ export const Tasks = ({
   removeTaskByID: Function;
   markTaskAsDoneToggle: Function;
   editTask: Function;
-  getDisplayStatus: boolean;
+  getDisplayStatus: ITaskOption;
   enableTaskOption: Function;
   disableTaskOption: Function;
 }) => {

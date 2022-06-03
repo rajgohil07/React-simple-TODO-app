@@ -7,6 +7,7 @@ import { getRandomID } from "./helper/herlperFunction";
 import { IJsonTodoData } from "./types/jsonTodoData";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import moment from "moment";
+import { ITaskOption } from "./types/TaskOptions";
 
 export const App = () => {
   // format the array as per date ascending order
@@ -39,15 +40,19 @@ export const App = () => {
   );
 
   // display options state
-  const [getDisplayStatus, setDisplayStatus] = useState(false);
+  const [getDisplayStatus, setDisplayStatus] = useState<ITaskOption>({
+    ID: "",
+    IsEnable: false,
+  });
 
   // to check weather the task exist or not
   const IsTaskExist: boolean = taskData.length > 0 ? true : false;
 
   // example of component did mount
   useEffect(() => {
-    taskData.length > 0 ? setExpandButton(expandButton) : setExpandButton(true);
-    getUpdateTaskData ? setExpandButton(true) : setExpandButton(expandButton);
+    if (taskData.length === 0 || getUpdateTaskData) {
+      setExpandButton(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskData, getUpdateTaskData]);
 
@@ -92,7 +97,10 @@ export const App = () => {
   };
 
   // toggle the close task/add task button
-  const toggleTheButton = () => setExpandButton(!expandButton);
+  const toggleTheButton = () => {
+    if (!expandButton) setUpdateTaskData(null);
+    setExpandButton(!expandButton);
+  };
 
   // add task to the json data
   const addTask = (
@@ -142,14 +150,25 @@ export const App = () => {
     const sortedTaskArray = setAscendingOrder(updateTaskData);
     // update the state
     setTaskData(sortedTaskArray);
+    setUpdateTaskData(null);
     setExpandButton(false);
   };
 
   // enable task option on mouse enter
-  const enableTaskOption = () => setDisplayStatus(true);
+  const enableTaskOption = (ID: string) => {
+    setDisplayStatus({
+      ID,
+      IsEnable: true,
+    });
+  };
 
   // disable task option on mouse leave
-  const disableTaskOption = () => setDisplayStatus(false);
+  const disableTaskOption = () => {
+    setDisplayStatus({
+      ID: "",
+      IsEnable: false,
+    });
+  };
 
   return (
     <div className="App container">

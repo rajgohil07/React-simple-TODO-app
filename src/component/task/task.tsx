@@ -1,6 +1,7 @@
 import { MdOutlineCancel } from "react-icons/md";
 import { HiPencilAlt } from "react-icons/hi";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { ITaskOption } from "../../types/TaskOptions";
 
 export const Task = ({
   TaskName,
@@ -21,7 +22,7 @@ export const Task = ({
   removeTaskByID: Function;
   markTaskAsDoneToggle: Function;
   editTask: Function;
-  getDisplayStatus: boolean;
+  getDisplayStatus: ITaskOption;
   enableTaskOption: Function;
   disableTaskOption: Function;
 }) => {
@@ -33,8 +34,8 @@ export const Task = ({
     <div
       className={classNameList}
       onDoubleClick={() => markTaskAsDoneToggle!(ID)}
-      onClick={() => enableTaskOption()}
-      //   onMouseLeave={disableTaskOption}
+      onMouseEnter={() => enableTaskOption(ID)}
+      onMouseLeave={() => disableTaskOption()}
     >
       <div className="innerClassDiv">
         <h3>
@@ -42,24 +43,10 @@ export const Task = ({
             {IsDone && <IoCheckmarkDoneSharp className="taskDone" />}
             {TaskName}
           </div>
-          {/* <div className="innerButtons">
-            <div className="editIcon">
-              <HiPencilAlt
-                className="redCrossMark"
-                onClick={() => editTask(ID)}
-              />
-            </div>
-            <div>
-              <MdOutlineCancel
-                className="redCrossMark"
-                onClick={() => removeTaskByID!(TaskName, ID)}
-              />
-            </div>
-          </div> */}
         </h3>
         <p>{Date}</p>
         <h1>{IsDone}</h1>
-        {getDisplayStatus && (
+        {getDisplayStatus.ID === ID && (
           <div className="innerButtons nestedInnerButtons">
             <div className="editIcon">
               <HiPencilAlt

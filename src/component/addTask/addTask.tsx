@@ -13,7 +13,7 @@ export const AddTask = ({
   editTaskByID: Function;
 }) => {
   let initialTaskNameValue = "";
-  let initialTaskCompletedSign = true;
+  let initialTaskCompletedSign = false;
   let initialTimeDate = new Date();
 
   // set state for update task
