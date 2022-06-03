@@ -1,5 +1,6 @@
 import { MdOutlineCancel } from "react-icons/md";
 import { HiPencilAlt } from "react-icons/hi";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 export const Task = ({
   TaskName,
@@ -9,6 +10,9 @@ export const Task = ({
   removeTaskByID,
   markTaskAsDoneToggle,
   editTask,
+  getDisplayStatus,
+  enableTaskOption,
+  disableTaskOption,
 }: {
   TaskName: string;
   ID: string;
@@ -17,6 +21,9 @@ export const Task = ({
   removeTaskByID: Function;
   markTaskAsDoneToggle: Function;
   editTask: Function;
+  getDisplayStatus: boolean;
+  enableTaskOption: Function;
+  disableTaskOption: Function;
 }) => {
   let classNameList = "task";
   if (IsDone) {
@@ -26,11 +33,16 @@ export const Task = ({
     <div
       className={classNameList}
       onDoubleClick={() => markTaskAsDoneToggle!(ID)}
+      onClick={() => enableTaskOption()}
+      //   onMouseLeave={disableTaskOption}
     >
       <div className="innerClassDiv">
         <h3>
-          {TaskName}
-          <div className="innerButtons">
+          <div className="TaskParentDiv">
+            {IsDone && <IoCheckmarkDoneSharp className="taskDone" />}
+            {TaskName}
+          </div>
+          {/* <div className="innerButtons">
             <div className="editIcon">
               <HiPencilAlt
                 className="redCrossMark"
@@ -43,10 +55,26 @@ export const Task = ({
                 onClick={() => removeTaskByID!(TaskName, ID)}
               />
             </div>
-          </div>
+          </div> */}
         </h3>
         <p>{Date}</p>
         <h1>{IsDone}</h1>
+        {getDisplayStatus && (
+          <div className="innerButtons nestedInnerButtons">
+            <div className="editIcon">
+              <HiPencilAlt
+                className="redCrossMark paddingClass"
+                onClick={() => editTask(ID)}
+              />
+            </div>
+            <div>
+              <MdOutlineCancel
+                className="redCrossMark paddingClass"
+                onClick={() => removeTaskByID!(TaskName, ID)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

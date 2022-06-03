@@ -7,11 +7,17 @@ export const Tasks = ({
   removeTaskByID,
   markTaskAsDoneToggle,
   editTask,
+  getDisplayStatus,
+  enableTaskOption,
+  disableTaskOption,
 }: {
   taskData: IJsonTodoData[];
   removeTaskByID: Function;
   markTaskAsDoneToggle: Function;
   editTask: Function;
+  getDisplayStatus: boolean;
+  enableTaskOption: Function;
+  disableTaskOption: Function;
 }) => {
   return (
     <>
@@ -27,6 +33,9 @@ export const Tasks = ({
             removeTaskByID={removeTaskByID}
             markTaskAsDoneToggle={markTaskAsDoneToggle}
             editTask={editTask}
+            getDisplayStatus={getDisplayStatus}
+            enableTaskOption={enableTaskOption}
+            disableTaskOption={disableTaskOption}
           />
         );
       })}

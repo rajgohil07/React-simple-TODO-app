@@ -38,14 +38,18 @@ export const App = () => {
     null
   );
 
+  // display options state
+  const [getDisplayStatus, setDisplayStatus] = useState(false);
+
   // to check weather the task exist or not
   const IsTaskExist: boolean = taskData.length > 0 ? true : false;
 
   // example of component did mount
   useEffect(() => {
     taskData.length > 0 ? setExpandButton(expandButton) : setExpandButton(true);
+    getUpdateTaskData ? setExpandButton(true) : setExpandButton(expandButton);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [taskData]);
+  }, [taskData, getUpdateTaskData]);
 
   // to remove the task by id
   const removeTaskByID = (TaskName: string, ID: string): void => {
@@ -113,7 +117,7 @@ export const App = () => {
       (singularData) => singularData.ID === ID
     );
     if (findTask) {
-      setExpandButton(true);
+      setExpandButton(false);
       setUpdateTaskData(findTask);
     }
   };
@@ -141,6 +145,12 @@ export const App = () => {
     setExpandButton(false);
   };
 
+  // enable task option on mouse enter
+  const enableTaskOption = () => setDisplayStatus(true);
+
+  // disable task option on mouse leave
+  const disableTaskOption = () => setDisplayStatus(false);
+
   return (
     <div className="App container">
       <div className="frontButton">
@@ -162,6 +172,9 @@ export const App = () => {
           removeTaskByID={removeTaskByID}
           markTaskAsDoneToggle={markTaskAsDoneToggle}
           editTask={getTaskByIDForEditTask}
+          getDisplayStatus={getDisplayStatus}
+          enableTaskOption={enableTaskOption}
+          disableTaskOption={disableTaskOption}
         />
       ) : (
         <h3>Task does not exist! Please add tasks</h3>
