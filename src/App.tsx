@@ -116,6 +116,7 @@ export const App = () => {
     );
     // update the state
     setTaskData(updateTaskData);
+    setExpandButton(false);
   };
 
   return (
