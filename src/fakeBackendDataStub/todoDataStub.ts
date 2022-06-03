@@ -5,7 +5,7 @@ export const dataJSON = [
     ID: getRandomID(),
     TaskName: "Wake up!",
     IsDone: true,
-    Date: "June 1st 20, 7:00 AM",
+    Date: "June 1st 22, 7:00 AM",
   },
   {
     ID: getRandomID(),
