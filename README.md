@@ -2,7 +2,7 @@
 
 ## Hosted webpage
 
-`This site is hosted use below URL to visit it.`
+This site is hosted use below URL to visit it.
 
 [Task Tracker React App](https://rajgohil07.github.io/React-simple-TODO-app/)
 
@@ -14,15 +14,15 @@ https://rajgohil07.github.io/React-simple-TODO-app
 
 ## Features
 
-- Double click on task to mark task as complete
-- Single tap or hover the task to view task option (Edit/Delete options)
-- All task are set to ascending order by date
-- Able to edit the task
-- Front-end validation when create/edit task
-- Message prompt when there is no task available and automatic opening of task
-- Able to delete the task
-- Nice hover effect on task
-- Hover effect on task option too (Delete/Task icon)
+- Double click on task to mark task as complete.
+- Single tap or hover the task to view task option (Edit/Delete options).
+- All task are set to ascending order by date.
+- Able to edit the task.
+- Front-end validation when create/edit task.
+- Message prompt when there is no task available and automatic opening of task.
+- Able to delete the task.
+- Nice hover effect on task.
+- Hover effect on task option too (Delete/Task icon).
 
 ## Available Scripts
 
