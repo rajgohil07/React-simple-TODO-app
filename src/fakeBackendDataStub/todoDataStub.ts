@@ -29,6 +29,6 @@ export const dataJSON = [
     ID: getRandomID(),
     TaskName: "Back to home",
     IsDone: false,
-    Date: "June 1st 20, 6:30 PM",
+    Date: "June 1st 22, 6:30 PM",
   },
 ];
