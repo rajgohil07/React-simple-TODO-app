@@ -6,7 +6,7 @@ This site is hosted use below URL to visit it.
 
 [Task Tracker React App](https://rajgohil07.github.io/React-simple-TODO-app/)
 
-`Or copy the URL below and paste it in the browser.`
+Or copy the URL below and paste it in the browser.
 
 ```bash
 https://rajgohil07.github.io/React-simple-TODO-app
@@ -28,6 +28,6 @@ https://rajgohil07.github.io/React-simple-TODO-app
 
 In the project directory, you can run:
 
-### `npm start`
+`npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser and it will runs the app in the development mode.
