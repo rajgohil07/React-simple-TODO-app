@@ -3,4 +3,5 @@ export interface IJsonTodoData {
   TaskName: string;
   IsDone: boolean;
   Date: string;
+  JavaScriptDate?: any;
 }

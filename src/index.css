@@ -38,6 +38,7 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+  transition: all 300ms linear;
 }
 
 .btn:focus {
@@ -174,4 +175,11 @@ footer {
 
 .editIcon {
   margin-right: 10px;
+}
+
+.btn:hover {
+  color: black;
+  background-color: white;
+  transition: all 300ms linear;
+  border: 1px black solid;
 }

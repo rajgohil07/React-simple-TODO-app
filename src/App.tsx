@@ -1,15 +1,38 @@
 import { useEffect, useState } from "react";
-import { dataJSON } from "./fake-backend-data-stub/todo-data-stub";
+import { dataJSON } from "./fakeBackendDataStub/todoDataStub";
 import { Tasks } from "./component/tasks/tasks";
 import { AddTask } from "./component/addTask/addTask";
 import { confirmAlert } from "react-confirm-alert";
 import { getRandomID } from "./helper/herlperFunction";
 import { IJsonTodoData } from "./types/jsonTodoData";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import moment from "moment";
 
 export const App = () => {
+  // format the array as per date ascending order
+  const setAscendingOrder = (taskArray: IJsonTodoData[]): IJsonTodoData[] => {
+    taskArray.forEach(
+      (singularTaskData, index) =>
+        (taskArray[index].JavaScriptDate = moment(
+          singularTaskData.Date,
+          "MMMM Do YY, h:mm: A"
+        ).toDate())
+    );
+    taskArray.sort((a, b) =>
+      moment(a.JavaScriptDate!.timeStamp).isAfter(
+        moment(b.JavaScriptDate!.timeStamp)
+      )
+        ? 1
+        : -1
+    );
+    return taskArray;
+  };
+
+  // get sorted array
+  const sortedTaskArray = setAscendingOrder(dataJSON);
+
   // set the state by storing the json
-  const [taskData, setTaskData] = useState(dataJSON);
+  const [taskData, setTaskData] = useState(sortedTaskArray);
 
   // set to display add task
   const [expandButton, setExpandButton] = useState(false);
@@ -43,7 +66,8 @@ export const App = () => {
                   (singularTaskData) => singularTaskData.ID !== ID
                 );
                 // update the state
-                setTaskData(getFilterTodoData);
+                const sortedTaskArray = setAscendingOrder(getFilterTodoData);
+                setTaskData(sortedTaskArray);
                 onClose();
               }}
             >
@@ -63,7 +87,8 @@ export const App = () => {
         : singularTaskData
     );
     // update the state
-    setTaskData(toggleJsonDataByID);
+    const sortedTaskArray = setAscendingOrder(toggleJsonDataByID);
+    setTaskData(sortedTaskArray);
   };
 
   // toggle the close task/add task button
@@ -81,7 +106,8 @@ export const App = () => {
       IsDone: IsTaskCompleted,
       Date: taskDate,
     };
-    setTaskData([...taskData, dataObject]);
+    const sortedTaskArray = setAscendingOrder([...taskData, dataObject]);
+    setTaskData(sortedTaskArray);
     setExpandButton(false);
   };
 
@@ -94,7 +120,6 @@ export const App = () => {
       setExpandButton(true);
       setUpdateTaskData(findTask);
     }
-    console.log("ID :>> ", ID);
   };
 
   // edit task and add
@@ -114,8 +139,9 @@ export const App = () => {
           }
         : singularTaskData
     );
+    const sortedTaskArray = setAscendingOrder(updateTaskData);
     // update the state
-    setTaskData(updateTaskData);
+    setTaskData(sortedTaskArray);
     setExpandButton(false);
   };
 
