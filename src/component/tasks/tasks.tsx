@@ -6,10 +6,12 @@ export const Tasks = ({
   taskData,
   removeTaskByID,
   markTaskAsDoneToggle,
+  editTask,
 }: {
   taskData: IJsonTodoData[];
   removeTaskByID: Function;
   markTaskAsDoneToggle: Function;
+  editTask: Function;
 }) => {
   return (
     <>
@@ -24,6 +26,7 @@ export const Tasks = ({
             Date={Date}
             removeTaskByID={removeTaskByID}
             markTaskAsDoneToggle={markTaskAsDoneToggle}
+            editTask={editTask}
           />
         );
       })}

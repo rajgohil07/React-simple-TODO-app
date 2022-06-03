@@ -1,16 +1,41 @@
 import moment from "moment";
 import { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
+import { IJsonTodoData } from "../../types/jsonTodoData";
 
-export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
+export const AddTask = ({
+  addTaskToJson,
+  getUpdateTaskData,
+  editTaskByID,
+}: {
+  addTaskToJson: Function;
+  getUpdateTaskData: null | IJsonTodoData;
+  editTaskByID: Function;
+}) => {
+  let initialTaskNameValue = "";
+  let initialTaskCompletedSign = true;
+  let initialTimeDate = new Date();
+
+  // set state for update task
+  if (getUpdateTaskData) {
+    const { TaskName, IsDone, Date } = getUpdateTaskData;
+    initialTaskNameValue = TaskName;
+    initialTaskCompletedSign = IsDone;
+    // convert date string into javascript date object
+    const javascriptObjectDate = moment(Date, "MMMM Do YY, h:mm: A").toDate();
+    initialTimeDate = javascriptObjectDate;
+  }
+
   // task name state
-  const [getTask, SetTask] = useState<string>("");
+  const [getTask, SetTask] = useState<string>(initialTaskNameValue);
 
   // task completed boolean state
-  const [getTaskCompleted, SetTaskCompleted] = useState(true);
+  const [getTaskCompleted, SetTaskCompleted] = useState(
+    initialTaskCompletedSign
+  );
 
   // task date state
-  const [getDateAndTime, setDateAndTime] = useState(new Date());
+  const [getDateAndTime, setDateAndTime] = useState(initialTimeDate);
 
   // store error state
   const [IsError, changesError] = useState(false);
@@ -22,12 +47,19 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
     IsTaskCompleted: boolean,
     taskDate: Date
   ) => {
+    // prevent the default behavior of submit button
     e.preventDefault();
-    addTaskToJson(
-      taskName,
-      IsTaskCompleted,
-      moment(taskDate).format("MMMM Do YY, h:mm: A").toString()
-    );
+    const dateToString = moment(taskDate)
+      .format("MMMM Do YY, h:mm: A")
+      .toString();
+    !getUpdateTaskData
+      ? addTaskToJson(taskName, IsTaskCompleted, dateToString)
+      : editTaskByID(
+          getUpdateTaskData.ID,
+          taskName,
+          IsTaskCompleted,
+          dateToString
+        );
   };
 
   // button class name list
@@ -75,7 +107,7 @@ export const AddTask = ({ addTaskToJson }: { addTaskToJson: Function }) => {
         type="submit"
         disabled={getTask ? false : true}
         className={buttonClassNameList.join(" ")}
-        value="Add task"
+        value={getUpdateTaskData ? "Edit task" : "Add task"}
       />
     </form>
   );

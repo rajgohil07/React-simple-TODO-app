@@ -3,9 +3,9 @@ import { dataJSON } from "./fake-backend-data-stub/todo-data-stub";
 import { Tasks } from "./component/tasks/tasks";
 import { AddTask } from "./component/addTask/addTask";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 import { getRandomID } from "./helper/herlperFunction";
 import { IJsonTodoData } from "./types/jsonTodoData";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export const App = () => {
   // set the state by storing the json
@@ -13,6 +13,11 @@ export const App = () => {
 
   // set to display add task
   const [expandButton, setExpandButton] = useState(false);
+
+  // store edit task data into state
+  const [getUpdateTaskData, setUpdateTaskData] = useState<null | IJsonTodoData>(
+    null
+  );
 
   // to check weather the task exist or not
   const IsTaskExist: boolean = taskData.length > 0 ? true : false;
@@ -80,6 +85,39 @@ export const App = () => {
     setExpandButton(false);
   };
 
+  // edit the task data
+  const getTaskByIDForEditTask = (ID: string) => {
+    const findTask: IJsonTodoData | undefined = taskData.find(
+      (singularData) => singularData.ID === ID
+    );
+    if (findTask) {
+      setExpandButton(true);
+      setUpdateTaskData(findTask);
+    }
+    console.log("ID :>> ", ID);
+  };
+
+  // edit task and add
+  const editTaskByID = (
+    ID: string,
+    taskName: string,
+    IsTaskCompleted: boolean,
+    taskDate: string
+  ) => {
+    const updateTaskData: IJsonTodoData[] = taskData.map((singularTaskData) =>
+      singularTaskData.ID === ID
+        ? {
+            ...singularTaskData,
+            TaskName: taskName,
+            IsDone: IsTaskCompleted,
+            Date: taskDate,
+          }
+        : singularTaskData
+    );
+    // update the state
+    setTaskData(updateTaskData);
+  };
+
   return (
     <div className="App container">
       <div className="frontButton">
@@ -88,12 +126,19 @@ export const App = () => {
           {expandButton ? "Close task" : "Add task"}
         </button>
       </div>
-      {expandButton ? <AddTask addTaskToJson={addTask} /> : null}
+      {expandButton ? (
+        <AddTask
+          getUpdateTaskData={getUpdateTaskData}
+          addTaskToJson={addTask}
+          editTaskByID={editTaskByID}
+        />
+      ) : null}
       {IsTaskExist ? (
         <Tasks
           taskData={taskData}
           removeTaskByID={removeTaskByID}
           markTaskAsDoneToggle={markTaskAsDoneToggle}
+          editTask={getTaskByIDForEditTask}
         />
       ) : (
         <h3>Task does not exist! Please add tasks</h3>

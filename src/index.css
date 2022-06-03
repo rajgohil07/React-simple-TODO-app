@@ -130,6 +130,7 @@ footer {
 
 .redCrossMark {
   color: blue;
+  font-size: 30px;
   transition: all 150ms linear;
 }
 
@@ -165,4 +166,12 @@ footer {
 .frontButton {
   display: flex;
   justify-content: space-between;
+}
+
+.innerButtons {
+  display: flex;
+}
+
+.editIcon {
+  margin-right: 10px;
 }
