@@ -19,11 +19,7 @@ export const App = () => {
         ).toDate())
     );
     taskArray.sort((a, b) =>
-      moment(a.JavaScriptDate!.timeStamp).isAfter(
-        moment(b.JavaScriptDate!.timeStamp)
-      )
-        ? 1
-        : -1
+      moment(a.JavaScriptDate!).diff(moment(b.JavaScriptDate!))
     );
     return taskArray;
   };
